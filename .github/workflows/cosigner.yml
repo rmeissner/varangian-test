@@ -2,7 +2,7 @@ name: Varangian Co-Signer
 
 on:
   schedule:
-    - cron: '* * * * *'
+    - cron: '0 0 * * *'
   workflow_dispatch: # Allows manual triggering
 
 concurrency: safe-tx-relayer
