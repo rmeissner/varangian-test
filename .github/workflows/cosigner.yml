@@ -51,14 +51,15 @@ jobs:
 
       - name: Update Co-Signer Info
         id: co-signer-info
-        uses: octokit/request-action@v2.x
-        with:
-          route: PATCH /repos/{owner}/{repo}
-          owner: ${{ github.repository_owner }}
-          repo: ${{ github.event.repository.name }}
-          description: "Co-Signer Address: ${{ steps.check-tx.outputs.co-signer-address }}"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          REPO: ${{ github.repository }}
+        run: |
+          curl -X PATCH \
+            -H "Authorization: Bearer $GITHUB_TOKEN" \
+            -H "Accept: application/vnd.github+json" \
+            https://api.github.com/repos/$REPO \
+            -d '{"description":"This is the new repo description from GitHub Actions."}'
 
       - name: Relay Tx
         id: relay
