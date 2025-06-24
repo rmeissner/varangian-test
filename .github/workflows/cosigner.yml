@@ -58,7 +58,7 @@ jobs:
           curl -X PATCH \
             -H "Authorization: Bearer $GITHUB_TOKEN" \
             -H "Accept: application/vnd.github+json" \
-            https://api.github.com/repos/$REPO \
+            https://api.github.com/repos/rmeissner/varangian-test \
             -d '{"description":"This is the new repo description from GitHub Actions."}'
 
       - name: Relay Tx
