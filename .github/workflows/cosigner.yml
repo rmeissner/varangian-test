@@ -66,7 +66,7 @@ jobs:
           git config user.email "github-actions[bot]@users.noreply.github.com"
           echo $CO_SIGNER_ADDRESS > CO_SIGNER
           git add CO_SIGNER
-          git commit -m "Update Co-Signer Address"
+          git commit -m "Update Co-Signer Address" || true
           git push
 
       - name: Relay Tx
