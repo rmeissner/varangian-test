@@ -1,5 +1,8 @@
 name: Varangian Co-Signer
 
+permissions:
+  contents: write
+
 on:
   schedule:
     - cron: '0 0 * * *'
@@ -53,7 +56,7 @@ jobs:
           route: PATCH /repos/{owner}/{repo}
           owner: ${{ github.repository_owner }}
           repo: ${{ github.event.repository.name }}
-          description: ${{ steps.check-tx.outputs.co-signer-address }}
+          description: "${{ steps.check-tx.outputs.co-signer-address }}"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
