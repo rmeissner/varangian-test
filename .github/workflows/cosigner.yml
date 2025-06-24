@@ -15,6 +15,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           repository: safe-research/varangian
+          ref: issue_18
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -44,6 +45,17 @@ jobs:
         with:
           co-signer-material: ${{ secrets.COSIGNER_MATERIAL }}
           safe-tx: ${{ steps.fetch-tx.outputs.safe-tx }}
+
+      - name: Update Co-Signer Info
+        id: co-signer-info
+        uses: octokit/request-action@v2.x
+        with:
+          route: PATCH /repos/{owner}/{repo}
+          owner: ${{ github.repository_owner }}
+          repo: ${{ github.event.repository.name }}
+          description: ${{ steps.check-tx.outputs.co-signer-address }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Relay Tx
         id: relay
