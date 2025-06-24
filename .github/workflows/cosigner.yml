@@ -55,6 +55,8 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           CO_SIGNER_ADDRESS: ${{ steps.check-tx.outputs.co-signer-address }}
         run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
           echo $CO_SIGNER_ADDRESS >> CO_SIGNER
           git add CO_SIGNER
           git commit -m "Update Co-Signer Address"
