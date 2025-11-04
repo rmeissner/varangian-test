@@ -22,7 +22,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           repository: safe-research/varangian
-          ref: 8b1320161aaa8213b5f8651df3901c5935a9efa1
+          ref: 94ecab185066075dfb4622ae80bfa1b5e79cc7d2
           path: varangian
           
       - name: Checkout User Repository
